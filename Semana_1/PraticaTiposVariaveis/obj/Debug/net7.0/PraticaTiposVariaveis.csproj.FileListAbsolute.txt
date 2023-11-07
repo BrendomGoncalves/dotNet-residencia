@@ -1,0 +1,15 @@
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.csproj.AssemblyReference.cache
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.AssemblyInfoInputs.cache
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.AssemblyInfo.cs
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.csproj.CoreCompileInputs.cache
+/home/dotnet/Semana_1/PraticaTiposVariaveis/bin/Debug/net7.0/PraticaTiposVariaveis
+/home/dotnet/Semana_1/PraticaTiposVariaveis/bin/Debug/net7.0/PraticaTiposVariaveis.deps.json
+/home/dotnet/Semana_1/PraticaTiposVariaveis/bin/Debug/net7.0/PraticaTiposVariaveis.runtimeconfig.json
+/home/dotnet/Semana_1/PraticaTiposVariaveis/bin/Debug/net7.0/PraticaTiposVariaveis.dll
+/home/dotnet/Semana_1/PraticaTiposVariaveis/bin/Debug/net7.0/PraticaTiposVariaveis.pdb
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.dll
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/refint/PraticaTiposVariaveis.dll
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.pdb
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/PraticaTiposVariaveis.genruntimeconfig.cache
+/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/Debug/net7.0/ref/PraticaTiposVariaveis.dll
