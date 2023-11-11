@@ -9,6 +9,3 @@
 
 <h3>3. Suponha que você tenha uma variável do tipo double e deseja convertê-la em um tipo int. Como você faria essa conversão e o que aconteceria se a parte fracionária da variável double não pudesse ser convertida em um int? Resolva o problema através de um exemplo em C#.</h3>
 <p>R: Para converter de double para int, pode usar a função de conversão Convert.ToInt32() ou o operador de cast (int). Porém, ao realizar a conversão a parte fracionária será truncada. Se a parte fracionária da variável double não puder ser representada em um int, o valor será arredondado para o inteiro mais próximo, significa que a parte decimal será simplesmente truncada, não arredondada.</p>
-
-<h3>4. Dada a variável int x = 10 e a variável int y = 3, escreva código para calcular e exibir o resultado da adição, subtração, multiplicação e divisão de x por y.</h3>
-<p></p>
