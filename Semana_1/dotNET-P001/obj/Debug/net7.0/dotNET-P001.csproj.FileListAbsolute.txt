@@ -1,0 +1,15 @@
+/home/dotnet/Semana_1/dotNET-P001/bin/Debug/net7.0/dotNET-P001
+/home/dotnet/Semana_1/dotNET-P001/bin/Debug/net7.0/dotNET-P001.deps.json
+/home/dotnet/Semana_1/dotNET-P001/bin/Debug/net7.0/dotNET-P001.runtimeconfig.json
+/home/dotnet/Semana_1/dotNET-P001/bin/Debug/net7.0/dotNET-P001.dll
+/home/dotnet/Semana_1/dotNET-P001/bin/Debug/net7.0/dotNET-P001.pdb
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.csproj.AssemblyReference.cache
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.AssemblyInfoInputs.cache
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.AssemblyInfo.cs
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.csproj.CoreCompileInputs.cache
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.dll
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/refint/dotNET-P001.dll
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.pdb
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/dotNET-P001.genruntimeconfig.cache
+/home/dotnet/Semana_1/dotNET-P001/obj/Debug/net7.0/ref/dotNET-P001.dll
