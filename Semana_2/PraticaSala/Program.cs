@@ -1,4 +1,4 @@
-﻿#region foreach
+﻿#region Foreach
   string[] pessoas = {"Maria", "Joao", "Marcelo", "Fabricio", "Ana"};
 
   foreach(string pessoa in pessoas){
@@ -6,7 +6,7 @@
   }
 #endregion
 
-#region Name
+#region LeituraTeclado
   string? nome = Console.ReadLine();
   Console.WriteLine($"Nome digitado: {nome}");
 #endregion
