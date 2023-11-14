@@ -1,0 +1,15 @@
+/home/dotnet/Semana_2/PraticaSala/bin/Debug/net7.0/PraticaSala
+/home/dotnet/Semana_2/PraticaSala/bin/Debug/net7.0/PraticaSala.deps.json
+/home/dotnet/Semana_2/PraticaSala/bin/Debug/net7.0/PraticaSala.runtimeconfig.json
+/home/dotnet/Semana_2/PraticaSala/bin/Debug/net7.0/PraticaSala.dll
+/home/dotnet/Semana_2/PraticaSala/bin/Debug/net7.0/PraticaSala.pdb
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.csproj.AssemblyReference.cache
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.AssemblyInfoInputs.cache
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.AssemblyInfo.cs
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.csproj.CoreCompileInputs.cache
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.dll
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/refint/PraticaSala.dll
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.pdb
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/PraticaSala.genruntimeconfig.cache
+/home/dotnet/Semana_2/PraticaSala/obj/Debug/net7.0/ref/PraticaSala.dll

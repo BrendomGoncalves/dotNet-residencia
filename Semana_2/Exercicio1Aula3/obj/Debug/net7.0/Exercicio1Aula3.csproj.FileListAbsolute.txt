@@ -1,0 +1,15 @@
+/home/dotnet/Semana_2/Exercicio1Aula3/bin/Debug/net7.0/Exercicio1Aula3
+/home/dotnet/Semana_2/Exercicio1Aula3/bin/Debug/net7.0/Exercicio1Aula3.deps.json
+/home/dotnet/Semana_2/Exercicio1Aula3/bin/Debug/net7.0/Exercicio1Aula3.runtimeconfig.json
+/home/dotnet/Semana_2/Exercicio1Aula3/bin/Debug/net7.0/Exercicio1Aula3.dll
+/home/dotnet/Semana_2/Exercicio1Aula3/bin/Debug/net7.0/Exercicio1Aula3.pdb
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.csproj.AssemblyReference.cache
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.AssemblyInfoInputs.cache
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.AssemblyInfo.cs
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.csproj.CoreCompileInputs.cache
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.dll
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/refint/Exercicio1Aula3.dll
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.pdb
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/Exercicio1Aula3.genruntimeconfig.cache
+/home/dotnet/Semana_2/Exercicio1Aula3/obj/Debug/net7.0/ref/Exercicio1Aula3.dll
