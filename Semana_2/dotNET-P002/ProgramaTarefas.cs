@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 class ProgramaTarefas
 {
@@ -8,10 +9,15 @@ class ProgramaTarefas
     do
     {
       Console.Clear();
+      // TODO criar estatistica sobre quantidade de tarefas
+      // TODO criar estatistica sobre as tarefas mais antigas e recentes
       Console.WriteLine("GERENCIADOR DE TAREFAS");
       Console.WriteLine("1. Nova Tarefa");
-      Console.WriteLine("2. Listar Tarefas");
-      Console.Write("5. Exit\n> ");
+      Console.WriteLine("2. Concluir Tarefa");
+      Console.WriteLine("3. Pesquisar Tarefa");
+      Console.WriteLine("4. Remover Tarefa");
+      Console.WriteLine("5. Listar Tarefas");
+      Console.Write("6. Exit\n> ");
       opcao = Console.ReadKey().KeyChar;
       Console.WriteLine();
       switch (opcao)
@@ -19,17 +25,29 @@ class ProgramaTarefas
         case '1':
           Tarefa novaTarefa = new Tarefa();
           novaTarefa.criarTarefa();
-          tarefas.Add(novaTarefa);
-          Console.WriteLine("Tarefa criada com sucesso!");
+          if (novaTarefa.Titulo == "" || novaTarefa.Titulo == null || novaTarefa.Titulo == " ")
+          {
+            Console.WriteLine("Tarefa cancelada!");
+          }
+          else
+          {
+            tarefas.Add(novaTarefa);
+            Console.WriteLine("\nTarefa criada com sucesso!");
+          }
           break;
         case '2':
-          listarTarefas();
+          conluirTarefa();
           break;
         case '3':
+          // TODO Criar função que permite pesquisar tarefas
           break;
         case '4':
+          removerTarefa();
           break;
         case '5':
+          listarTarefas();
+          break;
+        case '6':
           Console.Clear();
           Console.WriteLine("Encerrando...");
           break;
@@ -37,12 +55,12 @@ class ProgramaTarefas
           Console.WriteLine("\nOpção inválida, escolha uma opção existente!");
           break;
       }
-      if (opcao != '5')
+      if (opcao != '6')
       {
         Console.Write("\nPressione ENTER para continuar...");
         Console.ReadKey();
       }
-    } while (opcao != '5');
+    } while (opcao != '6');
   }
   public static void listarTarefas()
   {
@@ -88,7 +106,8 @@ class ProgramaTarefas
         {
           foreach (Tarefa tarefa in tarefas)
           {
-            if (tarefa.StatusConclusao){
+            if (tarefa.StatusConclusao)
+            {
               Console.Write("CONCLUIDA - ");
               Console.WriteLine(tarefa.Titulo + " (" + tarefa.DataVencimento.ToString("dddd | dd/MM/yyyy | HH:mm", new CultureInfo("pt-BR")) + ")");
               Console.WriteLine("Descrição: " + tarefa.Descricao + "\n");
@@ -109,7 +128,8 @@ class ProgramaTarefas
         {
           foreach (Tarefa tarefa in tarefas)
           {
-            if (!tarefa.StatusConclusao){
+            if (!tarefa.StatusConclusao)
+            {
               Console.Write("PENDENTE - ");
               Console.WriteLine(tarefa.Titulo + " (" + tarefa.DataVencimento.ToString("dddd | dd/MM/yyyy | HH:mm", new CultureInfo("pt-BR")) + ")");
               Console.WriteLine("Descrição: " + tarefa.Descricao + "\n");
@@ -123,5 +143,53 @@ class ProgramaTarefas
         Console.WriteLine("\nOpção inválida, escolha uma opção existente!");
         break;
     }
+  }
+  public static void conluirTarefa()
+  {
+    bool existeTarefas = false;
+    int contador = 0;
+    char? opcao = null;
+    do{
+      Console.Clear();
+      Console.WriteLine("LISTA DE TAREFAS PENDENTES:\n");
+      if (tarefas.Count == 0)
+      {
+        Console.WriteLine("Nenhuma tarefa criada...");
+      }
+      else
+      {
+        Console.WriteLine("[ID]");
+        foreach (Tarefa tarefa in tarefas)
+        {
+          if (!tarefa.StatusConclusao)
+          {
+            Console.Write($"[{++contador}]  PENDENTE - ");
+            Console.WriteLine(tarefa.Titulo + " (" + tarefa.DataVencimento.ToString("dddd | dd/MM/yyyy | HH:mm", new CultureInfo("pt-BR")) + ")");
+            Console.WriteLine("Descrição: " + tarefa.Descricao + "\n");
+            existeTarefas = true;
+          }
+        }
+        if (!existeTarefas) Console.WriteLine("Todas as tarefas já foram concluidas...");
+      }
+
+      int idTarefa;
+
+      do{
+        Console.Write("Digite o ID da tarefa: ");
+        Int32.TryParse(Console.ReadLine(), out idTarefa);
+        if(idTarefa < 1 || idTarefa > tarefas.Count) Console.WriteLine("Essa tarefa não existe! Digite novamente...");
+      }while(idTarefa < 1 || idTarefa > tarefas.Count);
+
+      tarefas[idTarefa - 1].StatusConclusao = true;
+      Console.WriteLine("\nTarefa concluida com sucesso!\n");
+
+      if(tarefas.Count > 1){
+        Console.Write("\nDeseja concluir mais tarefas? [S/N]\n> ");
+        opcao = Console.ReadKey().KeyChar;
+      }
+    }while(opcao != 'N' && opcao != 'n');
+  }
+  public static void removerTarefa(){
+    // TODO Criar funcionalidade de remover tarefas
   }
 }

@@ -39,8 +39,11 @@
     int dia, mes, ano, hora, minutos;
 
     Console.Clear();
+    Console.WriteLine("obs: Deixe vazio para cancelar e voltar");
     Console.Write("Digite o título da tarefa: ");
     this.titulo = Console.ReadLine();
+
+    if(this.titulo == "" || this.titulo == null || this.titulo == " ") return;
 
     Console.Write("Digite a descrição da tarefa: ");
     this.descricao = Console.ReadLine();
