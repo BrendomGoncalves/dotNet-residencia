@@ -15,6 +15,10 @@ class ProgramaTarefas
       switch (opcao)
       {
         case '1':
+          Tarefa novaTarefa = new Tarefa();
+          novaTarefa.criarTarefa();
+          tarefas.Add(novaTarefa);
+          Console.WriteLine("Tarefa criada com sucesso!");
           break;
         case '2':
           break;

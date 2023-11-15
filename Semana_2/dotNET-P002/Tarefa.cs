@@ -35,4 +35,30 @@
     get { return statusConclusao; }
     set { statusConclusao = value; }
   }
+  public void criarTarefa(){
+    int dia, mes, ano, hora, minutos;
+
+    Console.Write("Digite o título da tarefa: ");
+    this.titulo = Console.ReadLine();
+
+    Console.Write("Digite a descrição da tarefa: ");
+    this.descricao = Console.ReadLine();
+
+    Console.WriteLine("Digite a data de vencimento da tarefa: ");
+    Console.Write("Dia: ");
+    int.TryParse(Console.ReadLine(), out dia);
+    Console.Write("Mes: ");
+    int.TryParse(Console.ReadLine(), out mes);
+    Console.Write("Ano: ");
+    int.TryParse(Console.ReadLine(), out ano);
+    Console.WriteLine("Digite a hora: ");
+    Console.Write("Hora: ");
+    int.TryParse(Console.ReadLine(), out hora);
+    Console.Write("Minuto: ");
+    int.TryParse(Console.ReadLine(), out minutos);
+    this.dataVencimento = new DateTime(ano, mes, dia, hora, minutos, 0);
+
+    this.statusConclusao = false;
+  }
+  
 }
