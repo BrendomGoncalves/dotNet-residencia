@@ -25,7 +25,7 @@
     get { return descricao; }
     set { descricao = value; }
   }
-  public DateTime DataConclusao
+  public DateTime DataVencimento
   {
     get { return dataVencimento; }
     set { dataVencimento = value; }
@@ -38,6 +38,7 @@
   public void criarTarefa(){
     int dia, mes, ano, hora, minutos;
 
+    Console.Clear();
     Console.Write("Digite o título da tarefa: ");
     this.titulo = Console.ReadLine();
 
@@ -56,9 +57,9 @@
     int.TryParse(Console.ReadLine(), out hora);
     Console.Write("Minuto: ");
     int.TryParse(Console.ReadLine(), out minutos);
+
     this.dataVencimento = new DateTime(ano, mes, dia, hora, minutos, 0);
 
     this.statusConclusao = false;
   }
-  
 }
