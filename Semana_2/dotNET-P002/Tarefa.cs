@@ -49,6 +49,8 @@
     Console.Write("Digite a descrição da tarefa: ");
     this.descricao = Console.ReadLine();
 
+    if(this.descricao == "" || this.descricao == null || this.descricao == " ") this.descricao = "Sem descrição";
+
     Console.WriteLine("Digite a data de vencimento da tarefa: ");
     Console.Write("Dia: ");
     int.TryParse(Console.ReadLine(), out dia);
@@ -64,7 +66,7 @@
 
     this.dataVencimento = new DateTime(ano, mes, dia, hora, minutos, 0);
     
-    System.Console.WriteLine("Esta tarefa já foi concluida? [S/N]\n> ");
+    System.Console.Write("Esta tarefa já foi concluida? [S/N]\n> ");
     opcao = Console.ReadKey().KeyChar;
     if (opcao == 'S' || opcao == 's') this.statusConclusao = true;
     else this.statusConclusao = false;
