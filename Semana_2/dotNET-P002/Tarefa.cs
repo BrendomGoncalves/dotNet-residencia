@@ -37,6 +37,7 @@
   }
   public void criarTarefa(){
     int dia, mes, ano, hora, minutos;
+    char? opcao;
 
     Console.Clear();
     Console.WriteLine("obs: Deixe vazio para cancelar e voltar");
@@ -62,7 +63,10 @@
     int.TryParse(Console.ReadLine(), out minutos);
 
     this.dataVencimento = new DateTime(ano, mes, dia, hora, minutos, 0);
-
-    this.statusConclusao = false;
+    
+    System.Console.WriteLine("Esta tarefa já foi concluida? [S/N]\n> ");
+    opcao = Console.ReadKey().KeyChar;
+    if (opcao == 'S' || opcao == 's') this.statusConclusao = true;
+    else this.statusConclusao = false;
   }
 }
