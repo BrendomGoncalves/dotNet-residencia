@@ -21,7 +21,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Respositório para Residência de Software com atividades do módulo de <b>DotNet</b> com <b>Professor Hélder.
+Respositório para Residência de Software com atividades do módulo de <b>DotNet</b> com <b><a href="https://github.com/hcalmeida-uesc">Professor Hélder Almeida</a>.
 
 ## ✍️ Autores
 
