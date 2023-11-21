@@ -32,3 +32,24 @@
     return (name, age);
   }
 #endregion
+
+#region Lambda Exemplo
+  Func<int, int, int> soma = (x, y) => x + y;
+  Console.WriteLine(soma(10, 20));
+
+  Action<int, int> subtracao = (x, y) => Console.WriteLine($"Resultado da subtração: {x - y}");
+  subtracao(50, 20);
+
+  string[] nomes = {"Helder", "Nicole", "Brendom"};
+  Console.WriteLine($"Nomes com 6 letras: {nomes.Where(x => x.Length == 6).Count()}");
+#endregion
+
+#region LINQ Exemplo
+  List<int> listaNormal = new() {1, 2, 3, 4, 5};
+  var listaAoQuadrado = listaNormal.Select(x => x * x);
+  Console.WriteLine($"Lista Original: {string.Join(", ", listaNormal)}");
+  Console.WriteLine($"Lista ao Quadrado: {string.Join(", ", listaAoQuadrado)}");
+
+  var listaSomada = listaNormal.Select((x, index) => x + listaAoQuadrado.ElementAt(index));
+  Console.WriteLine($"Summed List: {string.Join(", ", listaSomada)}");
+#endregion
