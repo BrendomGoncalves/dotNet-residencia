@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/brendomg/.nuget/packages/": {}
+    "/home/brendom-victor-goncalves/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dotnet/Semana_1/PraticaTiposVariaveis/PraticaTiposVariaveis.csproj",
+      "projectUniqueName": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/PraticaTiposVariaveis/PraticaTiposVariaveis.csproj",
       "projectName": "PraticaTiposVariaveis",
-      "projectPath": "/home/dotnet/Semana_1/PraticaTiposVariaveis/PraticaTiposVariaveis.csproj",
-      "packagesPath": "/home/brendomg/.nuget/packages/",
-      "outputPath": "/home/dotnet/Semana_1/PraticaTiposVariaveis/obj/",
+      "projectPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/PraticaTiposVariaveis/PraticaTiposVariaveis.csproj",
+      "packagesPath": "/home/brendom-victor-goncalves/.nuget/packages/",
+      "outputPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/PraticaTiposVariaveis/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/brendomg/.nuget/NuGet/NuGet.Config"
+        "/home/brendom-victor-goncalves/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
