@@ -20,3 +20,15 @@
   Console.WriteLine("Tupla 4:");
   lista.ForEach(x => Console.WriteLine($"- {x.id}, {x.name}, {x.nascimento.ToString("dd/MM/yyyy")}"));
 #endregion
+
+#region Questão 1
+  Console.WriteLine($"{CalcAge("Helder", new DateTime(1987, 9, 24))}");
+  Console.WriteLine($"{CalcAge("Brendom", new DateTime(1999, 5, 20))}");
+
+  (string, int) CalcAge(string name, DateTime aniversario){
+    
+    int age = DateTime.Today.Year - aniversario.Year;
+    if(DateTime.Today.DayOfYear < aniversario.DayOfYear) age--;
+    return (name, age);
+  }
+#endregion
