@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj": {}
+    "/home/dotnet/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj": {}
   },
   "projects": {
-    "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj": {
+    "/home/dotnet/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj",
+        "projectUniqueName": "/home/dotnet/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj",
         "projectName": "Exercicio1Aula4",
-        "projectPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj",
-        "packagesPath": "/home/brendom-victor-goncalves/.nuget/packages/",
-        "outputPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/Exercicio1Aula4/obj/",
+        "projectPath": "/home/dotnet/Semana_2/Exercicio1Aula4/Exercicio1Aula4.csproj",
+        "packagesPath": "/home/brendomg/.nuget/packages/",
+        "outputPath": "/home/dotnet/Semana_2/Exercicio1Aula4/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/brendom-victor-goncalves/.nuget/NuGet/NuGet.Config"
+          "/home/brendomg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
         }
       }
     }

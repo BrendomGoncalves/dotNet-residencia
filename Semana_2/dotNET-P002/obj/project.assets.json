@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/brendom-victor-goncalves/.nuget/packages/": {}
+    "/home/brendomg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/dotNET-P002/dotNET-P002.csproj",
+      "projectUniqueName": "/home/dotnet/Semana_2/dotNET-P002/dotNET-P002.csproj",
       "projectName": "dotNET-P002",
-      "projectPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/dotNET-P002/dotNET-P002.csproj",
-      "packagesPath": "/home/brendom-victor-goncalves/.nuget/packages/",
-      "outputPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_2/dotNET-P002/obj/",
+      "projectPath": "/home/dotnet/Semana_2/dotNET-P002/dotNET-P002.csproj",
+      "packagesPath": "/home/brendomg/.nuget/packages/",
+      "outputPath": "/home/dotnet/Semana_2/dotNET-P002/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/brendom-victor-goncalves/.nuget/NuGet/NuGet.Config"
+        "/home/brendomg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
       }
     }
   }
