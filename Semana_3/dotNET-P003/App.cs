@@ -2,9 +2,6 @@
 
 class App
 {
-    /**
-     * @
-     */
     public static void Pausa()
     {
         Console.Write("Pressione qualquer tecla para continuar...");
@@ -91,7 +88,7 @@ class App
                             if (int.TryParse(Console.ReadLine(), out idProduto))
                             {
                                 //estoque.ConsultarProduto(idProduto);
-                                Console.WriteLine("Utilize o operador (-) para retirada");
+                                Console.WriteLine("Utilize o operador (-) para indicar retirada:");
                                 Console.Write("Quantidade: ");
                                 if (int.TryParse(Console.ReadLine(), out qtd))
                                     estoque.AtualizarEstoque(idProduto, qtd);

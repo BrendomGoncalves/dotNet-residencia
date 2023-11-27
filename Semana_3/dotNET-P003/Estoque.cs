@@ -66,7 +66,7 @@ class Estoque
             Console.WriteLine("[1] Relatório de quantidade");
             Console.WriteLine("[2] Relatório de valor");
             Console.WriteLine("[3] Relatório de total");
-            Console.WriteLine("[4] Voltar");
+            Console.Write("[4] Voltar\n> ");
             if (!int.TryParse(Console.ReadLine(), out op))
             {
                 throw new Exception("Opção inválida! Digite entre 1 e 4.");
@@ -79,7 +79,7 @@ class Estoque
                         Console.Clear();
                         int valor;
                         Console.WriteLine("Relatório de Quantidade");
-                        Console.WriteLine("Digite o valor mínimo em estoque:");
+                        Console.Write("Digite o valor mínimo em estoque:");
                         if (!int.TryParse(Console.ReadLine(), out valor))
                         {
                             throw new Exception("Somente numeros sao aceitos.");
