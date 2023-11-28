@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/brendomg/.nuget/packages/": {}
+    "/home/brendom-victor-goncalves/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dotnet/Semana_1/HelloWorld/HelloWorld.csproj",
+      "projectUniqueName": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/HelloWorld/HelloWorld.csproj",
       "projectName": "HelloWorld",
-      "projectPath": "/home/dotnet/Semana_1/HelloWorld/HelloWorld.csproj",
-      "packagesPath": "/home/brendomg/.nuget/packages/",
-      "outputPath": "/home/dotnet/Semana_1/HelloWorld/obj/",
+      "projectPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/HelloWorld/HelloWorld.csproj",
+      "packagesPath": "/home/brendom-victor-goncalves/.nuget/packages/",
+      "outputPath": "/home/brendom-victor-goncalves/dotNet-residencia/Semana_1/HelloWorld/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/brendomg/.nuget/NuGet/NuGet.Config"
+        "/home/brendom-victor-goncalves/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
