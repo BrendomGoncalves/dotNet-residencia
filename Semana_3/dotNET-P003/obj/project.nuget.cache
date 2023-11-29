@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rp8ShSZmXGd7IHh3VmPZKpcwnfo/9Umikwb5SlnMWsPrq1lbz7ShIsY2xTe6oA2OjEKnJRKe5mQOQ74JEQujTw==",
+  "dgSpecHash": "nlvkDysdUuQWew17T4nPjHV9cvQj7zzhZdhC9L7enSnELmKU9QHrlsx/8+RzUKBipasEE+kqeU/tJ0BqfxUGcg==",
   "success": true,
-  "projectFilePath": "/home/dotnet/Semana_3/dotNET-P003/dotNET-P003.csproj",
+  "projectFilePath": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\dotnet\\Semana_3\\dotNET-P003\\dotNET-P003.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

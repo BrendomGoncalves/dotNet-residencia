@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/home/brendomg/.nuget/packages/": {}
+    "C:\\Users\\brend\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dotnet/Semana_3/dotNET-P003/dotNET-P003.csproj",
+      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\dotnet\\Semana_3\\dotNET-P003\\dotNET-P003.csproj",
       "projectName": "dotNET-P003",
-      "projectPath": "/home/dotnet/Semana_3/dotNET-P003/dotNET-P003.csproj",
-      "packagesPath": "/home/brendomg/.nuget/packages/",
-      "outputPath": "/home/dotnet/Semana_3/dotNET-P003/obj/",
+      "projectPath": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\dotnet\\Semana_3\\dotNET-P003\\dotNET-P003.csproj",
+      "packagesPath": "C:\\Users\\brend\\.nuget\\packages\\",
+      "outputPath": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\dotnet\\Semana_3\\dotNET-P003\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/brendomg/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\brend\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\brend\\.dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
