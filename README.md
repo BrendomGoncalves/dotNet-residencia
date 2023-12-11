@@ -19,6 +19,8 @@
 - [P001](https://github.com/BrendomGoncalves/dotNet-residencia/tree/main/Semana_1/dotNET-P001)
 - [P002](https://github.com/BrendomGoncalves/dotNet-residencia/tree/main/Semana_2/dotNET-P002)
 - [P003](https://github.com/BrendomGoncalves/dotNet-residencia/tree/main/Semana_3/dotNET-P003)
+- [Avaliação Individual](https://github.com/BrendomGoncalves/dotNet-residencia/tree/main/Semana_4/AvaliacaoIndividual)
+- [Avaliação em Grupo](https://github.com/BrendomGoncalves/dotNet-residencia/tree/main/Semana_4/AvaliacaoGrupo)
 
 ## 🧐 About <a name = "about"></a>
 
