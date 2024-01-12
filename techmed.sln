@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techmed.Domain", "techmed.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techmed.Persistence", "techmed.Persistence\techmed.Persistence.csproj", "{B317B700-46F2-47EA-A579-E888CA8393B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techmed.Console", "techmed.Console\techmed.Console.csproj", "{3C2F83CF-7E39-45D2-8368-5592CB854D34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B317B700-46F2-47EA-A579-E888CA8393B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B317B700-46F2-47EA-A579-E888CA8393B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B317B700-46F2-47EA-A579-E888CA8393B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2F83CF-7E39-45D2-8368-5592CB854D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2F83CF-7E39-45D2-8368-5592CB854D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2F83CF-7E39-45D2-8368-5592CB854D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2F83CF-7E39-45D2-8368-5592CB854D34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

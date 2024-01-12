@@ -1,5 +1,3 @@
-using techmed.Domain.Common;
-
 namespace techmed.Domain.Entities;
 
 public class Paciente : Pessoa{

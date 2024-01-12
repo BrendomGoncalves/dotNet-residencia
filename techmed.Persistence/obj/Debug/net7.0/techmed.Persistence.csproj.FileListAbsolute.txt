@@ -10,3 +10,8 @@
 /home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/refint/techmed.Persistence.dll
 /home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.pdb
 /home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/ref/techmed.Persistence.dll
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Persistence.runtimeconfig.json
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Domain.dll
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Domain.pdb
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.csproj.CopyComplete
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.genruntimeconfig.cache
