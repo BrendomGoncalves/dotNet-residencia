@@ -1,0 +1,12 @@
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Persistence.deps.json
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Persistence.dll
+/home/dotNet-residencia/techmed.Persistence/bin/Debug/net7.0/techmed.Persistence.pdb
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.csproj.AssemblyReference.cache
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.AssemblyInfoInputs.cache
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.AssemblyInfo.cs
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.csproj.CoreCompileInputs.cache
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.dll
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/refint/techmed.Persistence.dll
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/techmed.Persistence.pdb
+/home/dotNet-residencia/techmed.Persistence/obj/Debug/net7.0/ref/techmed.Persistence.dll

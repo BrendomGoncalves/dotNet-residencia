@@ -1,0 +1,12 @@
+/home/dotNet-residencia/techmed.Domain/bin/Debug/net7.0/techmed.Domain.deps.json
+/home/dotNet-residencia/techmed.Domain/bin/Debug/net7.0/techmed.Domain.dll
+/home/dotNet-residencia/techmed.Domain/bin/Debug/net7.0/techmed.Domain.pdb
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.csproj.AssemblyReference.cache
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.AssemblyInfoInputs.cache
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.AssemblyInfo.cs
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.csproj.CoreCompileInputs.cache
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.dll
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/refint/techmed.Domain.dll
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/techmed.Domain.pdb
+/home/dotNet-residencia/techmed.Domain/obj/Debug/net7.0/ref/techmed.Domain.dll
