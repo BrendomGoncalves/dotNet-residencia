@@ -46,16 +46,22 @@ public class Program
 
         System.Console.WriteLine($"Atualizando o nome de um paciente no banco de dados");
         var doente = context.Pacientes.Where(p => p.CPF == "101.202.303-00").FirstOrDefault();
-        doente.Nome = "João";
-        context.Pacientes.Update(doente);
-
-        context.SaveChanges();
+        
+        if (doente != null)
+        {
+            doente.Nome = "João";
+            context.Pacientes.Update(doente);
+            context.SaveChanges();
+        }
 
         System.Console.WriteLine($"Removendo o primeiro médico no banco de dados");
         var primeiroMedico = context.Medicos.FirstOrDefault();
-        context.Medicos.Remove(primeiroMedico);
-
-        context.SaveChanges();
+        
+        if (primeiroMedico != null)
+        {
+            context.Medicos.Remove(primeiroMedico);
+            context.SaveChanges();
+        }
 
         System.Console.WriteLine($"Finalizando o programa");
     }
