@@ -1,74 +1,72 @@
 using Microsoft.AspNetCore.Mvc;
+using TechMed.WebAPI.Model;
 
 namespace TechMed.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/api/v0.1/")]
 public class MedicoController : ControllerBase
 {
-    private static readonly string[] Nomes = new[]{
-        "Maria", "Pedro", "Ana", "Lucas", "Luciana", "Mariana", "Carla", "Bruna", "Larissa"
-    };
-    private static readonly string[] Especialidades = new[]{
-        "Cardiologista", "Dermatologista", "Oftalmologista", "Ortopedista", "Pediatria", "Psiquiatra", "Urologista"
-    };
-
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public MedicoController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
-
-    [HttpGet(Name = "GetMedico")]
-    public IEnumerable<Medico> Get()
-    {
-        return Enumerable.Range(1, 5).Select(index => new Medico
+   [HttpGet("medicos")]
+   public IActionResult Get()
+   {
+      var medico = Enumerable.Range(1, 5).Select(index => new Medico
         {
-            Crm = Random.Shared.Next(1, 10000000).ToString(),
-            Nome = Nomes[Random.Shared.Next(Nomes.Length)],
-            Especialidade = Especialidades[Random.Shared.Next(Especialidades.Length)],
-            Salario = Random.Shared.Next(1000, 10000)
+            MedicoId = index,
+            Nome = $"Medico {index}"
         })
         .ToArray();
-    }
-    [HttpDelete("{crm}")]
-    public IActionResult Delete(string crm)
-    {
-        // Logic to delete the médico with the specified CRM
-        // This should involve removing the médico from the database or in-memory collection
-        // For example, if you have a list _medicos, you could do:
-        // var medicoToRemove = _medicos.FirstOrDefault(m => m.Crm == crm);
-        // if (medicoToRemove != null)
-        // {
-        //     _medicos.Remove(medicoToRemove);
-        //     return Ok();
-        // }
-        // else
-        // {
-        //     return NotFound($"Médico with CRM {crm} not found.");
-        // }
+      return Ok(medico);
+   }
 
-        // Placeholder for the actual delete operation
-        throw new NotImplementedException();
-    }
-    [HttpPut("{crm}")]
-    public IActionResult Update(string crm, Medico medico)
-    {
-        // lógica para inseri
-        return Ok();
-    }
-    [HttpPost(Name = "UpdateMedico")]
-    public IActionResult Create(Medico medico){
-        var nome = HttpContext.Request.Query["nome"].ToString();
-        var especialidade = HttpContext.Request.Query["especialidade"].ToString();
-        var salario = decimal.Parse(HttpContext.Request.Query["salario"]);
+   [HttpGet("medico/{id}")]
+   public IActionResult GetById(int id)
+   {
+      var medico = new Medico
+      {
+         MedicoId = id,
+         Nome = $"Medico {id}"
+      };
+      return Ok(medico);
+   }
 
-        medico.Nome = nome;
-        medico.Especialidade = especialidade;
-        medico.Salario = (float)salario;
+   [HttpPost("medico")]
+   public IActionResult Post([FromBody] Medico medico)
+   {
+      return CreatedAtAction(nameof(GetById), new { id = 1 }, medico);
+   }
 
-        // Continue with the logic to create a new Medico with the provided details
-        return Ok();
-    }
+   [HttpPut("medico/{id}")]
+   public IActionResult Put(int id, [FromBody] Medico medico)
+   {
+      //TODO: Buscar um medico pelo id e atualizar os dados
+      // caso não encontre, retorna NotFound()
+      return NoContent();
+   }
+
+   [HttpDelete("medico/{id}")]
+   public IActionResult Delete(int id)
+   {
+      //TODO: Buscar um medico pelo id e apagar
+      // caso não encontre, retorna NotFound()
+      return NoContent();
+   }
+
+   [HttpGet("medico/{id}/atendimentos")]
+   public IActionResult GetAtendimentos(int id)
+   {
+      var atendimento = Enumerable.Range(1, 5).Select(index => new Atendimento
+        {
+            AtendimentoId = index,
+            DataHora = DateTime.Now,
+            MedicoId = id,
+            Medico = new Medico
+            {
+                MedicoId = id,
+                Nome = $"Medico {id}"
+            }
+        })
+        .ToArray();
+      return Ok(atendimento);
+   }
 }
