@@ -1,6 +1,14 @@
-namespace TechMed.Infrastructure.Persistence.Configurations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TechMed.Core.Entities;
 
-public class MedicoConfiguration
+namespace TechMed.Infrastructure.Persistence.Configurations;
+public class MedicoConfigurations : IEntityTypeConfiguration<Medico>
 {
-    // TODO Implementar configurações medico
+   public void Configure(EntityTypeBuilder<Medico> builder)
+   {
+      builder
+         .ToTable("Medicos")
+         .HasKey(m => m.MedicoId);
+   }
 }

@@ -7,7 +7,6 @@ public class AtendimentoConfigurations : IEntityTypeConfiguration<Atendimento>
 {
    public void Configure(EntityTypeBuilder<Atendimento> builder)
    {
-      //configurações de mapeamento da entidade Atendimento
       builder
          .ToTable("Atendimentos")
          .HasKey(m => m.AtendimentoId);
