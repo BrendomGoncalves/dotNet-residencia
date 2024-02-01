@@ -1,7 +1,6 @@
 namespace TechMed.Core.Entities;
 
-public abstract class Pessoa : BaseEntity
-{
-    public string Nome { get; set; }
-    public string Cpf { get; set; }
+public abstract class Pessoa : BaseEntity{
+    public required string Nome {get; set;}
+    public required string CPF {get; set;}
 }

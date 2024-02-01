@@ -1,6 +1,5 @@
 namespace TechMed.Core.Exceptions;
-
-public class AtendimentoExceptions : Exception
+public class AtendimentoNotFoundException : Exception
 {
-    public AtendimentoNotFoundException() : base("Atendimento não encontrado.") {}
+   public AtendimentoNotFoundException() : base("Atendimento não encontrado") {}
 }

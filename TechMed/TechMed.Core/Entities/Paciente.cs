@@ -1,7 +1,7 @@
 namespace TechMed.Core.Entities;
 
-public class Paciente : Pessoa
-{
+public class Paciente : Pessoa{
     public int PacienteId {get; set;}
-    public DateTimeOffSet DataNascimento {get; set;}
+    public DateTime DataNascimento {get; set;}
+    public ICollection<Atendimento>? Atendimentos {get;}
 }
