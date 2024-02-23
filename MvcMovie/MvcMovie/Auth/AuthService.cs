@@ -31,6 +31,7 @@ public class AuthService : IAuthService
         var audience = _configuration["Jwt:Audience"];
         var key = _configuration["Jwt:Key"];
         //cria uma chave utilizando criptografia simétrica
+        if (key == null) throw new ArgumentNullException("Jwt:Key");
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         //cria as credenciais do token
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
