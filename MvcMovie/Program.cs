@@ -1,9 +1,21 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
+using MvcMovie.Data.Auth;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<MvcMovieContext>(options =>
+    {
+        var connectionString = builder.Configuration.GetConnectionString("MvcMovieContext");
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
+        options.UseMySql(connectionString, serverVersion);
+    });
+    
+}
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

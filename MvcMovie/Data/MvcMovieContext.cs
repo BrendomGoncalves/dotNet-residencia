@@ -11,5 +11,7 @@ namespace MvcMovie.Data
         }
 
         public DbSet<Movie> Movie { get; set; } = default!;
+
+        public DbSet<MvcMovie.Models.User> User { get; set; } = default!;
     }
 }
