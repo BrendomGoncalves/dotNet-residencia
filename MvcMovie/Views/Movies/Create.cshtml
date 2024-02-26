@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<a asp-action="Index" class="btn btn-primary col-1">VOLTAR</a>
+<hr>
+<h2>Criar Filme:</h2>
 
-<h4>Movie</h4>
-<hr/>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -40,16 +40,14 @@
                 <label asp-for="Artists" class="control-label"></label>
                 <select asp-for="Artists" class="form-control" asp-items="ViewBag.Artists"></select>
             </div>
+            <br>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary"/>
+                <input type="submit" value="Create" class="btn btn-primary col-3"/>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<br>
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

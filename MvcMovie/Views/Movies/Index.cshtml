@@ -4,10 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-action="Create" class="btn btn-success col-1">Novo Filme</a>
 </p>
 <table class="table">
     <thead>
@@ -65,9 +63,9 @@
                 }
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieId" class="btn btn-primary">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.MovieId" class="btn btn-primary">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.MovieId" class="btn btn-danger">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MovieId" class="btn btn-primary">EDITAR</a>
+                <a asp-action="Details" asp-route-id="@item.MovieId" class="btn btn-primary">DETALHES</a>
+                <a asp-action="Delete" asp-route-id="@item.MovieId" class="btn btn-danger">APAGAR</a>
             </td>
         </tr>
     }
