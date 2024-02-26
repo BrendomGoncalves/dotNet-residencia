@@ -15,5 +15,7 @@ namespace MvcMovie.Data
         public DbSet<User> User { get; set; } = default!;
 
         public DbSet<Studio> Studio { get; set; } = default!;
+
+        public DbSet<MvcMovie.Models.Artist> Artist { get; set; } = default!;
     }
 }
