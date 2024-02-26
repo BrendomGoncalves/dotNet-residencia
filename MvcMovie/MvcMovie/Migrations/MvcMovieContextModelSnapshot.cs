@@ -17,9 +17,45 @@ namespace MvcMovie.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.16");
 
+            modelBuilder.Entity("ArtistMovie", b =>
+                {
+                    b.Property<int>("ArtistsArtistId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MoviesMovieId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ArtistsArtistId", "MoviesMovieId");
+
+                    b.HasIndex("MoviesMovieId");
+
+                    b.ToTable("ArtistMovie");
+                });
+
+            modelBuilder.Entity("MvcMovie.Models.Artist", b =>
+                {
+                    b.Property<int>("ArtistId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Site")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ArtistId");
+
+                    b.ToTable("Artist", (string)null);
+                });
+
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -32,12 +68,38 @@ namespace MvcMovie.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("StudioId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("MovieId");
 
-                    b.ToTable("Movie");
+                    b.HasIndex("StudioId");
+
+                    b.ToTable("Movie", (string)null);
+                });
+
+            modelBuilder.Entity("MvcMovie.Models.Studio", b =>
+                {
+                    b.Property<int>("StudioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Site")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StudioId");
+
+                    b.ToTable("Studio", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.User", b =>
@@ -51,7 +113,6 @@ namespace MvcMovie.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
@@ -60,7 +121,36 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
+                });
+
+            modelBuilder.Entity("ArtistMovie", b =>
+                {
+                    b.HasOne("MvcMovie.Models.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MvcMovie.Models.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesMovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MvcMovie.Models.Movie", b =>
+                {
+                    b.HasOne("MvcMovie.Models.Studio", "Studio")
+                        .WithMany("Movies")
+                        .HasForeignKey("StudioId");
+
+                    b.Navigation("Studio");
+                });
+
+            modelBuilder.Entity("MvcMovie.Models.Studio", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

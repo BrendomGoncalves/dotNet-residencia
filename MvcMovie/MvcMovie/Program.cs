@@ -1,13 +1,19 @@
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Auth;
 using MvcMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsDevelopment())
 {
-    builder.Services.AddDbContext<MvcMovieContext>(options =>
-        options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
-    builder.Services.AddScoped<IAuthService, AuthService>();
+    builder.Services.AddDbContext<MvcMovieContext>(options => {
+    var connectionString = builder.Configuration.GetConnectionString("MvcMovieContext");
+
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+
+    options.UseMySql(connectionString, serverVersion);
+    // builder.Services.AddDbContext<MvcMovieContext>(options =>
+    //     options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));
+    // builder.Services.AddScoped<IAuthService, AuthService>();
+    });
 }
 else
 {

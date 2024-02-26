@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -36,7 +31,7 @@ namespace MvcMovie.Controllers
             }
 
             var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.MovieId == id);
             if (movie == null)
             {
                 return NotFound();
@@ -48,6 +43,10 @@ namespace MvcMovie.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
+            List<Artist> artists = _context.Artist.ToList();
+            List<Studio> studios = _context.Studio.ToList();
+            ViewBag.Artists = artists;
+            ViewBag.Studios = studios;
             return View();
         }
 
@@ -56,10 +55,14 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Artists,StudioId")] Movie movie)
         {
             if (ModelState.IsValid)
             {
+                var _studio = _context.Studio.FirstOrDefault(s => s.StudioId == movie.StudioId);
+                if(_studio != null) BadRequest("Studio not found");
+                movie.Studio = _studio;
+        
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -90,7 +93,7 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
-            if (id != movie.Id)
+            if (id != movie.MovieId)
             {
                 return NotFound();
             }
@@ -104,7 +107,7 @@ namespace MvcMovie.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!MovieExists(movie.MovieId))
                     {
                         return NotFound();
                     }
@@ -127,7 +130,7 @@ namespace MvcMovie.Controllers
             }
 
             var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.MovieId == id);
             if (movie == null)
             {
                 return NotFound();
@@ -157,7 +160,7 @@ namespace MvcMovie.Controllers
 
         private bool MovieExists(int id)
         {
-          return (_context.Movie?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Movie?.Any(e => e.MovieId == id)).GetValueOrDefault();
         }
     }
 }

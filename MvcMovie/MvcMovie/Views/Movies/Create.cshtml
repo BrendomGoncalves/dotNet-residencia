@@ -28,6 +28,34 @@
                 <span asp-validation-for="Genre" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Artists" class="control-label">Selecione um/os artistas:</label>
+                <select name="Artists" id="Artists" class="form-control" multiple>
+                    <option value="">Nenhum</option>
+                    @if (ViewBag.Artists != null)
+                    {
+                        foreach (var item in (ViewBag.Artists as List<MvcMovie.Models.Artist>)!)
+                        {
+                            <option value="@item.ArtistId">@item.Name</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Artists" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudioId" class="control-label">Selecione o studio:</label>
+                <select name="StudioId" id="StudioId" class="form-control">
+                    <option value="">Nenhum</option>
+                    @if (ViewBag.Studios != null)
+                    {
+                        foreach (var item in (ViewBag.Studios as List<MvcMovie.Models.Studio>)!)
+                        {
+                            <option value="@item.StudioId">@item.Name</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="StudioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
@@ -44,5 +72,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
