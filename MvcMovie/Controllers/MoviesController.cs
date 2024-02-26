@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -17,28 +22,32 @@ namespace MvcMovie.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Movie.ToListAsync());
+            var mvcMovieContext = _context.Movie
+                .Include(m => m.Studio)
+                .Include(m => m.Artists);
+            return View(await mvcMovieContext.ToListAsync());
         }
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+
             var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
-            {
-                return NotFound();
-            }
+                .Include(m => m.Studio)
+                .Include(m => m.Artists)
+                .FirstOrDefaultAsync(m => m.MovieId == id);
+            
+            if (movie == null) return NotFound();
+
             return View(movie);
         }
 
         // GET: Movies/Create
         public IActionResult Create()
         {
+            ViewData["Studios"] = new SelectList(_context.Studio, "StudioId", "Name");
+            ViewData["Artists"] = new SelectList(_context.Artist, "ArtistId", "Name");
             return View();
         }
 
@@ -47,29 +56,38 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("MovieId,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie, List<int> artists)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
-                await _context.SaveChangesAsync();
+                var _studio = await _context.Studio.FirstOrDefaultAsync(m => m.StudioId == movie.StudioId);
+                if (_studio != null)
+                {
+                    var _artists = _context.Artist.Where(a => artists.Contains(a.ArtistId)).ToList();
+                    if(_artists.Count > 0) movie.Artists = _artists;
+                    movie.Studio = _studio;
+                    _context.Add(movie);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
                 return RedirectToAction(nameof(Index));
+
             }
+            ViewData["StudioId"] = new SelectList(_context.Set<Studio>(), "StudioId", "Name");
+            ViewData["Artists"] = new SelectList(_context.Set<Artist>(), "ArtistId", "Name");
             return View(movie);
         }
 
         // GET: Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+
             var movie = await _context.Movie.FindAsync(id);
-            if (movie == null)
-            {
-                return NotFound();
-            }
+            
+            if (movie == null) return NotFound();
+            
+            ViewData["StudioId"] = new SelectList(_context.Studio, "StudioId", "StudioId", movie.StudioId);
             return View(movie);
         }
 
@@ -78,12 +96,10 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("MovieId,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie)
         {
-            if (id != movie.Id)
-            {
-                return NotFound();
-            }
+            if (id != movie.MovieId) return NotFound();
+
             if (ModelState.IsValid)
             {
                 try
@@ -93,33 +109,25 @@ namespace MvcMovie.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!MovieExists(movie.MovieId)) return NotFound();
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StudioId"] = new SelectList(_context.Studio, "StudioId", "StudioId", movie.StudioId);
             return View(movie);
         }
 
         // GET: Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+
             var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
-            {
-                return NotFound();
-            }
+                .Include(m => m.Studio)
+                .FirstOrDefaultAsync(m => m.MovieId == id);
+            if (movie == null) return NotFound();
+
             return View(movie);
         }
 
@@ -129,10 +137,8 @@ namespace MvcMovie.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);
-            if (movie != null)
-            {
-                _context.Movie.Remove(movie);
-            }
+            
+            if (movie != null) _context.Movie.Remove(movie);
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -140,7 +146,7 @@ namespace MvcMovie.Controllers
 
         private bool MovieExists(int id)
         {
-          return (_context.Movie?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Movie?.Any(e => e.MovieId == id)).GetValueOrDefault();
         }
     }
 }

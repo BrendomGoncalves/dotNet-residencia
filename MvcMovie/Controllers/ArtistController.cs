@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -22,15 +17,13 @@ namespace MvcMovie.Controllers
         // GET: Artist
         public async Task<IActionResult> Index()
         {
-              return _context.Artist != null ? 
-                          View(await _context.Artist.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Artist'  is null.");
+              return View(await _context.Artist.ToListAsync());
         }
 
         // GET: Artist/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Artist == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -70,7 +63,7 @@ namespace MvcMovie.Controllers
         // GET: Artist/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Artist == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -121,7 +114,7 @@ namespace MvcMovie.Controllers
         // GET: Artist/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Artist == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -141,10 +134,6 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Artist == null)
-            {
-                return Problem("Entity set 'MvcMovieContext.Artist'  is null.");
-            }
             var artist = await _context.Artist.FindAsync(id);
             if (artist != null)
             {

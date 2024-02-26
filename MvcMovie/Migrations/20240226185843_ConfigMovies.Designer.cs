@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcMovie.Data;
 
@@ -10,9 +11,11 @@ using MvcMovie.Data;
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    partial class MvcMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240226185843_ConfigMovies")]
+    partial class ConfigMovies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,7 +34,7 @@ namespace MvcMovie.Migrations
 
                     b.HasIndex("MoviesMovieId");
 
-                    b.ToTable("MovieArtists", (string)null);
+                    b.ToTable("ArtistMovie");
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Artist", b =>
@@ -51,7 +54,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("ArtistId");
 
-                    b.ToTable("Artist");
+                    b.ToTable("Artist", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
@@ -79,7 +82,7 @@ namespace MvcMovie.Migrations
 
                     b.HasIndex("StudioId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movie", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Studio", b =>
@@ -99,7 +102,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("StudioId");
 
-                    b.ToTable("Studio");
+                    b.ToTable("Studio", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.User", b =>
@@ -119,7 +122,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("ArtistMovie", b =>

@@ -22,9 +22,7 @@ namespace MvcMovie.Controllers
         // GET: Studios
         public async Task<IActionResult> Index()
         {
-              return _context.Studio != null ? 
-                          View(await _context.Studio.ToListAsync()) :
-                          Problem("Entity set 'MvcMovieContext.Studio'  is null.");
+              return View(await _context.Studio.ToListAsync());
         }
 
         // GET: Studios/Details/5

@@ -16,6 +16,21 @@ namespace MvcMovie.Data
 
         public DbSet<Studio> Studio { get; set; } = default!;
 
-        public DbSet<MvcMovie.Models.Artist> Artist { get; set; } = default!;
+        public DbSet<Artist> Artist { get; set; } = default!;
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Movie>()
+                .HasMany(m => m.Artists)
+                .WithMany(a => a.Movies)
+                .UsingEntity(j => j.ToTable("MovieArtists"));
+
+            modelBuilder.Entity<Movie>()
+                .HasOne(m => m.Studio)
+                .WithMany(s => s.Movies)
+                .HasForeignKey(m => m.StudioId);
+        }
     }
 }

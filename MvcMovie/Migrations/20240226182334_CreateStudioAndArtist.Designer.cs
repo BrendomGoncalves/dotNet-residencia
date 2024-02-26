@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcMovie.Data;
 
@@ -10,29 +11,16 @@ using MvcMovie.Data;
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    partial class MvcMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20240226182334_CreateStudioAndArtist")]
+    partial class CreateStudioAndArtist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("ArtistMovie", b =>
-                {
-                    b.Property<int>("ArtistsArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoviesMovieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArtistsArtistId", "MoviesMovieId");
-
-                    b.HasIndex("MoviesMovieId");
-
-                    b.ToTable("MovieArtists", (string)null);
-                });
 
             modelBuilder.Entity("MvcMovie.Models.Artist", b =>
                 {
@@ -56,8 +44,11 @@ namespace MvcMovie.Migrations
 
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
                 {
-                    b.Property<int>("MovieId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ArtistId")
                         .HasColumnType("int");
 
                     b.Property<string>("Genre")
@@ -69,13 +60,15 @@ namespace MvcMovie.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("StudioId")
+                    b.Property<int?>("StudioId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext");
 
-                    b.HasKey("MovieId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArtistId");
 
                     b.HasIndex("StudioId");
 
@@ -122,30 +115,20 @@ namespace MvcMovie.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("ArtistMovie", b =>
-                {
-                    b.HasOne("MvcMovie.Models.Artist", null)
-                        .WithMany()
-                        .HasForeignKey("ArtistsArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MvcMovie.Models.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesMovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
                 {
-                    b.HasOne("MvcMovie.Models.Studio", "Studio")
+                    b.HasOne("MvcMovie.Models.Artist", null)
                         .WithMany("Movies")
-                        .HasForeignKey("StudioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ArtistId");
 
-                    b.Navigation("Studio");
+                    b.HasOne("MvcMovie.Models.Studio", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("StudioId");
+                });
+
+            modelBuilder.Entity("MvcMovie.Models.Artist", b =>
+                {
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Studio", b =>
