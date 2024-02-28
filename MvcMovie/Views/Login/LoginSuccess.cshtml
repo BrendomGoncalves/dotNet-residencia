@@ -2,8 +2,11 @@
     ViewData["Title"] = "Login Success";
 }
 
-<h1 style="color: green">Login Success!</h1>
-
-<div>
-    <a asp-action="Index">Back</a>
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <h2 class="alert-heading">Login Done Successfully!</h2>
+        <h4>Welcome, @User.Identity?.Name! You are logged in to our platform.</h4>
+        <hr>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary col-1">Home</a>
+    </div>
 </div>

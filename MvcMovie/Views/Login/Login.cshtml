@@ -3,7 +3,7 @@
 }
 @if (User.Identity is { IsAuthenticated: true })
 {
-    <h2 class="form-title">Você já está logado(a) como @User.Identity.Name.</h2>
+    <h2 class="form-title">Você está logado(a) como @User.Identity.Name.</h2><br>
     <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Página Principal</a>
 }
 else

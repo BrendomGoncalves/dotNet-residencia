@@ -4,44 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<a asp-action="Index" class="btn btn-primary col-1">VOLTAR</a>
+<div class="row">
+    <div class="col-10">
+        <h2>MOVIE DETAILS</h2>
+    </div>
+    <div class="col-auto">
+        <p>
+            <a asp-action="Index" class="btn btn-primary">BACK TO LIST</a>
+        </p>
+    </div>
+</div>
 <hr>
-<h2>Detalhes:</h2>
 
 <div>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Title):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            @Html.DisplayNameFor(model => model.ReleaseDate):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Genre)
+            @Html.DisplayNameFor(model => model.Genre):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Genre)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.Price):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Studio)
+            @Html.DisplayNameFor(model => model.Studio):
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Studio!.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Artists)
+            @Html.DisplayNameFor(model => model.Artists):
         </dt>
         <dd class="col-sm-10">
             @if (Model.Artists != null)
@@ -57,6 +65,6 @@
     </dl>
 </div>
 <div>
-    
-    <a asp-action="Edit" asp-route-id="@Model?.MovieId" class="btn btn-warning col-1 text-dark">EDITAR</a>
+    <a asp-action="Edit" asp-route-id="@Model?.MovieId" class="btn btn-primary col-1 text-white">EDIT</a>
+    <a asp-action="Delete" asp-route-id="@Model?.MovieId" class="btn btn-danger col-1 text-white">DELETE</a>
 </div>

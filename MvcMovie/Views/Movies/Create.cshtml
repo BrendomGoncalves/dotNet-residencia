@@ -4,9 +4,17 @@
     ViewData["Title"] = "Create";
 }
 
-<a asp-action="Index" class="btn btn-primary col-1">VOLTAR</a>
+<div class="row">
+    <div class="col-10">
+        <h2>MOVIE CREATE</h2>
+    </div>
+    <div class="col-auto">
+        <p>
+            <a asp-action="Index" class="btn btn-success">BACK TO LIST</a>
+        </p>
+    </div>
+</div>
 <hr>
-<h2>Criar Filme:</h2>
 
 <div class="row">
     <div class="col-md-4">
@@ -16,33 +24,33 @@
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control"/>
                 <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
+            </div><br>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
                 <input asp-for="ReleaseDate" class="form-control"/>
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-            </div>
+            </div><br>
             <div class="form-group">
                 <label asp-for="Genre" class="control-label"></label>
                 <input asp-for="Genre" class="form-control"/>
                 <span asp-validation-for="Genre" class="text-danger"></span>
-            </div>
+            </div><br>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" class="form-control"/>
                 <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+            </div><br>
             <div class="form-group">
                 <label asp-for="StudioId" class="control-label"></label>
                 <select asp-for="StudioId" class="form-control" asp-items="ViewBag.Studios"></select>
-            </div>
+            </div><br>
             <div class="form-group">
                 <label asp-for="Artists" class="control-label"></label>
                 <select asp-for="Artists" class="form-control" asp-items="ViewBag.Artists"></select>
-            </div>
+            </div><br>
             <br>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary col-3"/>
+                <input type="submit" value="CREATE" class="btn btn-success col-3"/>
             </div>
         </form>
     </div>

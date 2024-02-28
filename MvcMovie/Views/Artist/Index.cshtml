@@ -4,11 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col-10">
+        <h2>ARTISTS LIST</h2>
+    </div>
+    <div class="col-auto">
+        <p>
+            <a asp-action="Create" class="btn btn-success">CREATE NEW ARTIST</a>
+        </p>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Site)
             </th>
-            <th></th>
+            <th class="col-3">
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
