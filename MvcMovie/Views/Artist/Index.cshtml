@@ -17,7 +17,7 @@
 
 <table class="table">
     <thead>
-        <tr>
+        <tr style="text-align: center;">
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -44,10 +44,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Site)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArtistId">Delete</a>
+            <td style="text-align: center;">
+                <a asp-action="Edit" asp-route-id="@item.ArtistId" class="btn btn-warning">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.ArtistId" class="btn btn-primary">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.ArtistId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
