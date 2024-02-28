@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +26,8 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies/Details/5
+        [Authorize(Policy = "Administrator")]
+        [Authorize(Policy = "User")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -44,6 +43,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies/Create
+        [Authorize(Policy = "Administrator")]
         public IActionResult Create()
         {
             ViewData["Studios"] = new SelectList(_context.Studio, "StudioId", "Name");
@@ -56,6 +56,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Create([Bind("MovieId,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie, List<int> artists)
         {
             if (ModelState.IsValid)
@@ -80,6 +81,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies/Edit/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -102,6 +104,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("MovieId,Title,ReleaseDate,Genre,Price,StudioId")] Movie movie, List<int> artists)
         {
             if (id != movie.MovieId) return NotFound();
@@ -135,6 +138,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies/Delete/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -151,6 +155,7 @@ namespace MvcMovie.Controllers
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);

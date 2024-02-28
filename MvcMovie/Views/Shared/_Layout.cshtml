@@ -35,6 +35,10 @@
                     </li>
                 </ul>
                 <a asp-controller="Login" asp-action="Index" class="btn btn-primary bg-warning text-black-50">Login</a>
+                @if (User.Identity is { IsAuthenticated: true })
+                {
+                    <a asp-controller="Login" asp-action="Sair" class="btn btn-primary bg-danger text-white">Sair</a>
+                }
             </div>
         </div>
     </nav>

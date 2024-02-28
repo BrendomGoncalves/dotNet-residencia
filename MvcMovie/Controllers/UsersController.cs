@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
@@ -18,12 +19,14 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Users
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Index()
         {
               return View(await _context.User.ToListAsync());
         }
 
         // GET: Users/Details/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -37,6 +40,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Users/Create
+        [Authorize(Policy = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -47,6 +51,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Create([Bind("UserId,Name,Email,Password")] User user)
         {
             if (!ModelState.IsValid) return View(user);
@@ -65,6 +70,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Users/Edit/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -82,6 +88,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,Email,Password")] User user)
         {
             if (id != user.UserId) return NotFound();
@@ -109,6 +116,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Users/Delete/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,6 +135,7 @@ namespace MvcMovie.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _context.User.FindAsync(id);

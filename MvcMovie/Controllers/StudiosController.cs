@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -26,9 +22,11 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studios/Details/5
+        [Authorize(Policy = "Administrator")]
+        [Authorize(Policy = "User")]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Studio == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -44,6 +42,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studios/Create
+        [Authorize(Policy = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +53,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Create([Bind("StudioId,Name,Country,Site")] Studio studio)
         {
             if (ModelState.IsValid)
@@ -86,6 +86,7 @@ namespace MvcMovie.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("StudioId,Name,Country,Site")] Studio studio)
         {
             if (id != studio.StudioId)
@@ -117,6 +118,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studios/Delete/5
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Studio == null)
@@ -137,6 +139,7 @@ namespace MvcMovie.Controllers
         // POST: Studios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Studio == null)

@@ -51,7 +51,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("ArtistId");
 
-                    b.ToTable("Artist");
+                    b.ToTable("Artist", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Movie", b =>
@@ -79,7 +79,7 @@ namespace MvcMovie.Migrations
 
                     b.HasIndex("StudioId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movie", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.Studio", b =>
@@ -99,7 +99,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("StudioId");
 
-                    b.ToTable("Studio");
+                    b.ToTable("Studio", (string)null);
                 });
 
             modelBuilder.Entity("MvcMovie.Models.User", b =>
@@ -119,7 +119,7 @@ namespace MvcMovie.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("ArtistMovie", b =>

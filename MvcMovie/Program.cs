@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Data.Auth;
@@ -12,13 +13,24 @@ if (builder.Environment.IsDevelopment())
         var serverVersion = ServerVersion.AutoDetect(connectionString);
         options.UseMySql(connectionString, serverVersion);
     });
-    
 }
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.SlidingExpiration = true;
+    options.AccessDeniedPath = "/Home";
+});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Administrator", policy => policy.RequireRole("Administrator"));
+    options.AddPolicy("User", policy => policy.RequireRole("User"));
+});
 
 var app = builder.Build();
 
@@ -30,8 +42,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Middleware for cookie policy
+var cookiePolicyOptions = new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Strict
+};
+app.UseCookiePolicy(cookiePolicyOptions);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseRouting();
 
