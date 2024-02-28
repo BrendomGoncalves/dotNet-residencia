@@ -45,11 +45,11 @@ public class LoginController : Controller
                     var userExist =
                         await _context.User.FirstOrDefaultAsync(u =>
                             u.Email == user.Email && u.Password == user.Password);
-                    if (userExist != null && userExist.Email == user.Email && userExist.Password == user.Password)
+                    if (userExist != null && userExist.Email == user.Email && userExist.Password == user.Password && userExist.Name != null)
                     {
                         var claims = new List<Claim>
                         {
-                            new(ClaimTypes.Name, userExist.Email),
+                            new(ClaimTypes.Name, userExist.Name),
                             new("FullName", userExist.Name ?? userExist.Email),
                             new(ClaimTypes.Role, userExist.Name == "admin" ? "Administrator" : "User")
                         };

@@ -22,8 +22,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Studios/Details/5
-        [Authorize(Policy = "Administrator")]
-        [Authorize(Policy = "User")]
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

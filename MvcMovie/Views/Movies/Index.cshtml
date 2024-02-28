@@ -4,9 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<p>
-    <a asp-action="Create" class="btn btn-success col-1">Novo Filme</a>
-</p>
+<div class="row">
+    <div class="col-10">
+        <h2>Movies List</h2>
+    </div>
+    <div class="col-auto">
+        <p>
+            <a asp-action="Create" class="btn btn-success">Create New Movie</a>
+        </p>
+    </div>
+</div>
+
 <table class="table">
     <thead>
     <tr>
@@ -28,7 +36,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Artists)
         </th>
-        <th></th>
+        <th class="col-3">
+            Actions
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -63,9 +73,9 @@
                 }
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MovieId" class="btn btn-primary">EDITAR</a>
-                <a asp-action="Details" asp-route-id="@item.MovieId" class="btn btn-primary">DETALHES</a>
-                <a asp-action="Delete" asp-route-id="@item.MovieId" class="btn btn-danger">APAGAR</a>
+                <a asp-action="Edit" asp-route-id="@item.MovieId" class="btn btn-primary btn-sm">EDIT</a>
+                <a asp-action="Details" asp-route-id="@item.MovieId" class="btn btn-primary btn-sm">DETAILS</a>
+                <a asp-action="Delete" asp-route-id="@item.MovieId" class="btn btn-danger btn-sm">DELETE</a>
             </td>
         </tr>
     }

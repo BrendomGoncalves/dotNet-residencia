@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -34,11 +34,13 @@
                         <a class="nav-link text-white" asp-area="" asp-controller="Artist" asp-action="Index">Artists</a>
                     </li>
                 </ul>
-                <a asp-controller="Login" asp-action="Index" class="btn btn-primary bg-warning text-black-50">Login</a>
-                @if (User.Identity is { IsAuthenticated: true })
-                {
-                    <a asp-controller="Login" asp-action="Sair" class="btn btn-primary bg-danger text-white">Sair</a>
-                }
+                <div>
+                    <a asp-controller="Login" asp-action="Index" class="btn btn-light text-dark border-1">Login</a>
+                    @if (User.Identity is { IsAuthenticated: true })
+                    {
+                        <a asp-controller="Login" asp-action="Sair" class="btn btn-secondary text-white border-1">Logout</a>
+                    }
+                </div>
             </div>
         </div>
     </nav>
@@ -49,9 +51,9 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer class="border-top footer text-muted fixed-bottom">
     <div class="container">
-        &copy; 2022 - Movie App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2022 - Movie App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Brendom Gonçalves</a>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.js"></script>
