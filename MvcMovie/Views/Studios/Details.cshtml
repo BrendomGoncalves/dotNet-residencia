@@ -35,6 +35,17 @@
         <dd class = "col-sm-11">
             @Html.DisplayFor(model => model.Site)
         </dd>
+        <dt class="col-sm-1">
+            Movies:
+        </dt>
+        <dd class="col-sm-11">
+            <ul>
+                @foreach (var movie in Model.Movies)
+                {
+                    <li>@movie.Title</li>
+                }
+            </ul>
+        </dd>
     </dl>
 </div>
 <div>

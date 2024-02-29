@@ -34,7 +34,8 @@ namespace MvcMovie.Controllers
             }
 
             var studio = await _context.Studio
-                .FirstOrDefaultAsync(m => m.StudioId == id);
+                  .Include(m => m.Movies)
+                  .FirstOrDefaultAsync(m => m.StudioId == id);
             if (studio == null)
             {
                 return NotFound();
@@ -64,6 +65,8 @@ namespace MvcMovie.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            TempData["SuccessMessage"] = "A ação foi concluída com sucesso.";
 
             return View(studio);
         }
@@ -132,8 +135,9 @@ namespace MvcMovie.Controllers
         {
             if (id == null) return NotFound();
 
-            var studio = await _context.Studio
-                .FirstOrDefaultAsync(m => m.StudioId == id);
+           var studio = await _context.Studio
+                  .Include(m => m.Movies)
+                  .FirstOrDefaultAsync(m => m.StudioId == id);
             if (studio == null) return NotFound();
 
             return View(studio);
