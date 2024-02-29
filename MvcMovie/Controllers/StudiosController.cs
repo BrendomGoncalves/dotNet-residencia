@@ -28,17 +28,11 @@ namespace MvcMovie.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var studio = await _context.Studio
                 .FirstOrDefaultAsync(m => m.StudioId == id);
-            if (studio == null)
-            {
-                return NotFound();
-            }
+            if (studio == null) return NotFound();
 
             return View(studio);
         }
