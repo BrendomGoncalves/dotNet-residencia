@@ -31,8 +31,12 @@ namespace MvcMovie.Controllers
             if (id == null) return NotFound();
 
             var studio = await _context.Studio
-                .FirstOrDefaultAsync(m => m.StudioId == id);
-            if (studio == null) return NotFound();
+                  .Include(m => m.Movies)
+                  .FirstOrDefaultAsync(m => m.StudioId == id);
+            if (studio == null)
+            {
+                return NotFound();
+            }
 
             return View(studio);
         }
@@ -56,8 +60,9 @@ namespace MvcMovie.Controllers
             {
                 _context.Add(studio);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), TempData["SuccessMessage"]);
             }
+
 
             return View(studio);
         }
@@ -127,7 +132,8 @@ namespace MvcMovie.Controllers
             if (id == null) return NotFound();
 
             var studio = await _context.Studio
-                .FirstOrDefaultAsync(m => m.StudioId == id);
+                   .Include(m => m.Movies)
+                   .FirstOrDefaultAsync(m => m.StudioId == id);
             if (studio == null) return NotFound();
 
             return View(studio);
