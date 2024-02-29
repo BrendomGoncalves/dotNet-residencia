@@ -17,6 +17,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var mvcMovieContext = _context.Movie

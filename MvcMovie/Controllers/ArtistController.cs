@@ -17,6 +17,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Artist
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var mvcArtistContext = _context.Artist
@@ -57,7 +58,11 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _movies = _context.Movie.Where(m => movies.Contains(m.MovieId)).Include(movie => movie.Artists).ToList();
+                var _movies = _context.Movie
+                    .Where(m => movies.Contains(m.MovieId))
+                    .Include(movie => movie.Artists)
+                    .ToList();
+                
                 if (_movies.Count > 0) artist.Movies = _movies;
                 
                 foreach (var item in _movies)
@@ -84,6 +89,7 @@ namespace MvcMovie.Controllers
             var artist = await _context.Artist
                 .Include(m => m.Movies)
                 .FirstOrDefaultAsync(a => a.ArtistId == id);
+            
             if (artist == null) return NotFound();
 
             ViewData["Movies"] =
@@ -167,10 +173,7 @@ namespace MvcMovie.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var artist = await _context.Artist.FindAsync(id);
-            if (artist != null)
-            {
-                _context.Artist.Remove(artist);
-            }
+            if (artist != null) _context.Artist.Remove(artist);
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

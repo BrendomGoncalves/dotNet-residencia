@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data.Auth;
@@ -26,6 +27,7 @@ public class LoginController : Controller
         return Task.FromResult<IActionResult>(View("Login"));
     }
 
+    [Authorize]
     public Task<IActionResult> LoginSuccess()
     {
         return Task.FromResult<IActionResult>(View());
@@ -45,7 +47,8 @@ public class LoginController : Controller
                     var userExist =
                         await _context.User.FirstOrDefaultAsync(u =>
                             u.Email == user.Email && u.Password == user.Password);
-                    if (userExist != null && userExist.Email == user.Email && userExist.Password == user.Password && userExist.Name != null)
+                    if (userExist != null && userExist.Email == user.Email && userExist.Password == user.Password &&
+                        userExist.Name != null)
                     {
                         var claims = new List<Claim>
                         {
@@ -54,28 +57,34 @@ public class LoginController : Controller
                             new(ClaimTypes.Role, userExist.Name == "admin" ? "Administrator" : "User")
                         };
 
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsIdentity =
+                            new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                         var authProperties = new AuthenticationProperties
                         {
                             AllowRefresh = true,
                             ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                             IsPersistent = false,
-                            RedirectUri = "/Home"
+                            RedirectUri = "/Home",
+                            Items =
+                            {
+                                new KeyValuePair<string, string?>("sessionStart", DateTimeOffset.UtcNow.ToString())
+                            }
                         };
 
                         await HttpContext.SignInAsync(
                             CookieAuthenticationDefaults.AuthenticationScheme,
                             new ClaimsPrincipal(claimsIdentity),
                             authProperties);
-                        
+
                         return RedirectToAction("LoginSuccess", "Login");
                     }
                 }
-                else ModelState.AddModelError(string.Empty, "Usuário não existe");
+                else ModelState.AddModelError("Email", "Usuário não existe");
             }
             else ModelState.AddModelError("Password", "Insira uma senha");
         }
+
         return View("Login");
     }
 
