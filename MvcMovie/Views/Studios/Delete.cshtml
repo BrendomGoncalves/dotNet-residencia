@@ -18,40 +18,43 @@
 
 <div>
     <dl class="row">
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Name):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Country):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Country)
         </dd>
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Site):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Site)
         </dd>
         <dt class="col-sm-1">
-            Movies:
+            @Html.DisplayNameFor(model => model.Movies):
         </dt>
         <dd class="col-sm-11">
-            <ul>
-                @foreach (var movie in Model.Movies)
+            @if (Model.Movies != null)
+            {
+                foreach (var artist in Model.Movies)
                 {
-                    <li>@movie.Title</li>
+                    <div>
+                        @Html.DisplayFor(modelItem => artist.Title)
+                    </div>
                 }
-            </ul>
+            }
         </dd>
     </dl>
-    
+
     <h3>Are you sure you want to delete @Model.Name?</h3>
     <form asp-action="Delete">
-        <input type="hidden" asp-for="StudioId" />
-        <input type="submit" value="DELETE" class="btn btn-danger" />
+        <input type="hidden" asp-for="StudioId"/>
+        <input type="submit" value="DELETE" class="btn btn-danger"/>
     </form>
 </div>
