@@ -28,10 +28,7 @@ namespace MvcMovie.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var studio = await _context.Studio
                   .Include(m => m.Movies)

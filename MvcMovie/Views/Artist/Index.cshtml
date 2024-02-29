@@ -17,23 +17,27 @@
 
 <table class="table">
     <thead>
-        <tr style="text-align: center;">
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Site)
-            </th>
-            <th class="col-3">
-                Actions
-            </th>
-        </tr>
+    <tr style="text-align: center;">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Site)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Movies)
+        </th>
+        <th class="col-3">
+            Actions
+        </th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -44,12 +48,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Site)
             </td>
+            <td>
+                @if (item.Movies != null)
+                {
+                    foreach (var movie in item.Movies)
+                    {
+                        @Html.DisplayFor(modelItem => movie.Title)<br/>
+                    }
+                }
+            </td>
             <td style="text-align: center;">
                 <a asp-action="Edit" asp-route-id="@item.ArtistId" class="btn btn-warning">Edit</a>
                 <a asp-action="Details" asp-route-id="@item.ArtistId" class="btn btn-primary">Details</a>
                 <a asp-action="Delete" asp-route-id="@item.ArtistId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

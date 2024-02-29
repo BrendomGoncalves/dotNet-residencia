@@ -157,14 +157,12 @@ namespace MvcMovie.Controllers
                             throw;
                         }
                     }
-
                     return RedirectToAction(nameof(Index));
                 }
             }
 
             ViewData["StudioId"] = new SelectList(_context.Studio, "StudioId", "StudioId", movie.StudioId);
-            ViewData["Artists"] =
-                new SelectList(_context.Artist, "ArtistId", "Name", movie.Artists!.Select(a => a.ArtistId));
+            ViewData["Artists"] = new SelectList(_context.Artist, "ArtistId", "Name", movie.Artists!.Select(a => a.ArtistId));
             return View(movie);
         }
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -14,28 +15,26 @@ namespace MvcMovie.Controllers
         {
             _context = context;
         }
-        
+
         // GET: Artist
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Artist.ToListAsync());
+            var mvcArtistContext = _context.Artist
+                .Include(m => m.Movies)
+                .ToListAsync();
+            return View(await mvcArtistContext);
         }
 
         // GET: Artist/Details/5
         [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var artist = await _context.Artist
+                .Include(m => m.Movies)
                 .FirstOrDefaultAsync(m => m.ArtistId == id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
+            if (artist == null) return NotFound();
 
             return View(artist);
         }
@@ -44,6 +43,7 @@ namespace MvcMovie.Controllers
         [Authorize(Policy = "Administrator")]
         public IActionResult Create()
         {
+            ViewData["Movies"] = new SelectList(_context.Movie, "MovieId", "Title");
             return View();
         }
 
@@ -53,14 +53,25 @@ namespace MvcMovie.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "Administrator")]
-        public async Task<IActionResult> Create([Bind("ArtistId,Name,Bio,Site")] Artist artist)
+        public async Task<IActionResult> Create([Bind("ArtistId,Name,Bio,Site")] Artist artist, List<int> movies)
         {
             if (ModelState.IsValid)
             {
+                var _movies = _context.Movie.Where(m => movies.Contains(m.MovieId)).Include(movie => movie.Artists).ToList();
+                if (_movies.Count > 0) artist.Movies = _movies;
+                
+                foreach (var item in _movies)
+                {
+                    if (item.Artists != null && !item.Artists.Contains(artist)) item.Artists?.Add(artist);
+                }
+                
                 _context.Add(artist);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewData["Movies"] = new SelectList(_context.Movie, "MovieId", "Title");
+            
             return View(artist);
         }
 
@@ -68,16 +79,16 @@ namespace MvcMovie.Controllers
         [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var artist = await _context.Artist.FindAsync(id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
+            var artist = await _context.Artist
+                .Include(m => m.Movies)
+                .FirstOrDefaultAsync(a => a.ArtistId == id);
+            if (artist == null) return NotFound();
+
+            ViewData["Movies"] =
+                new SelectList(_context.Movie, "MovieId", "Title", artist.Movies!.Select(a => a.MovieId));
+
             return View(artist);
         }
 
@@ -87,33 +98,51 @@ namespace MvcMovie.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "Administrator")]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,Name,Bio,Site")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,Name,Bio,Site")] Artist artist, List<int> movies)
         {
-            if (id != artist.ArtistId)
-            {
-                return NotFound();
-            }
+            if (id != artist.ArtistId) return NotFound();
 
             if (ModelState.IsValid)
             {
-                try
+                var _movies = _context.Movie.Where(a => movies.Contains(a.MovieId)).ToList();
+                if (_movies.Count > 0)
                 {
-                    _context.Update(artist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ArtistExists(artist.ArtistId))
+                    var existingArtist = await _context.Artist
+                        .Include(m => m.Movies)
+                        .FirstOrDefaultAsync(m => m.ArtistId == artist.ArtistId);
+
+                    if (existingArtist != null)
                     {
-                        return NotFound();
+                        existingArtist.Movies?.Clear();
+                        await _context.SaveChangesAsync();
+
+                        existingArtist.Name = artist.Name;
+                        existingArtist.Bio = artist.Bio;
+                        existingArtist.Site = artist.Site;
+                        existingArtist.Movies = _movies;
+
+                        foreach (var item in _movies)
+                        {
+                            item.Artists?.Add(existingArtist);
+                        }
                     }
-                    else
+
+                    try
                     {
+                        if (existingArtist != null) _context.Update(artist);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!ArtistExists(artist.ArtistId)) return NotFound();
                         throw;
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewData["Movies"] = new SelectList(_context.Movie, "MovieId", "Title", artist.Movies!.Select(m => m.MovieId));
+            
             return View(artist);
         }
 
@@ -121,17 +150,12 @@ namespace MvcMovie.Controllers
         [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var artist = await _context.Artist
+                .Include(m => m.Movies)
                 .FirstOrDefaultAsync(m => m.ArtistId == id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
+            if (artist == null) return NotFound();
 
             return View(artist);
         }
@@ -147,14 +171,14 @@ namespace MvcMovie.Controllers
             {
                 _context.Artist.Remove(artist);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArtistExists(int id)
         {
-          return (_context.Artist?.Any(e => e.ArtistId == id)).GetValueOrDefault();
+            return (_context.Artist?.Any(e => e.ArtistId == id)).GetValueOrDefault();
         }
     }
 }

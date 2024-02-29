@@ -18,23 +18,37 @@
 
 <div>
     <dl class="row">
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Name):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Bio):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Bio)
         </dd>
-        <dt class = "col-sm-1">
+        <dt class="col-sm-1">
             @Html.DisplayNameFor(model => model.Site):
         </dt>
-        <dd class = "col-sm-11">
+        <dd class="col-sm-11">
             @Html.DisplayFor(model => model.Site)
+        </dd>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.Movies):
+        </dt>
+        <dd class="col-sm-11">
+            @if (Model.Movies != null)
+            {
+                foreach (var artist in Model.Movies)
+                {
+                    <div>
+                        @Html.DisplayFor(modelItem => artist.Title)
+                    </div>
+                }
+            }
         </dd>
     </dl>
 </div>
