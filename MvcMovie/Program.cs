@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Data.Auth;
+using MvcMovie.Data.StartupConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ if (builder.Environment.IsDevelopment())
 }
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<Startup>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -34,6 +36,12 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var startup = scope.ServiceProvider.GetRequiredService<Startup>();
+    startup.Configure(app, app.Environment);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,16 +1,20 @@
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Data.Auth;
+using MvcMovie.Models;
 
 namespace MvcMovie.Data.StartupConfig;
 
 public class Startup
 {
-    private readonly UserManager<IdentityUser> _userManager;
     private readonly AdminCredentials? _adminCredentials;
+    private readonly MvcMovieContext _context;
+    private readonly IAuthService _authService;
 
-    public Startup(UserManager<IdentityUser> userManager, IConfiguration configuration)
+    public Startup(IConfiguration configuration, MvcMovieContext context, IAuthService authService)
     {
-        _userManager = userManager;
         _adminCredentials = configuration.GetSection("AdminCredentials").Get<AdminCredentials>();
+        _context = context;
+        _authService = authService;
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -20,22 +24,18 @@ public class Startup
 
     private async Task EnsureAdminUserExists()
     {
-        var adminUser = await _userManager.FindByNameAsync(_adminCredentials?.UserName!);
-
-        if (adminUser == null)
+        var user = new User
         {
-            var user = new IdentityUser { UserName = _adminCredentials?.UserName, Email = "admin@example.com" };
-            var result = await _userManager.CreateAsync(user, _adminCredentials?.Password!);
-            if (!result.Succeeded)
-            {
-                throw new Exception("Failed to create 'admin' user");
-            }
+            Name = "admin",
+            Email = _adminCredentials?.UserName,
+            Password = _adminCredentials?.Password
+        };
+        var existingUser = await _context.User.FirstOrDefaultAsync(u => u.Email == user.Email);
+        if(existingUser == null)
+        {
+            if (user.Password != null) user.Password = _authService.ComputeSha256Hash(user.Password);
+            _context.Add(user);
+            await _context.SaveChangesAsync();
         }
     }
-}
-
-public class AdminCredentials
-{
-    public string? UserName { get; set; }
-    public string? Password { get; set; }
 }
