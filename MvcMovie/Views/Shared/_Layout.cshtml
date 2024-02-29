@@ -7,8 +7,6 @@
     <title>@ViewData["Title"] - Movie App</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <!-- Include the SweetAlert2 library -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -75,22 +73,9 @@
 
     <footer class="border-top footer text-muted fixed-bottom">
         <div class="container">
-            &copy; 2022 - Movie App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Brendom Gonçalves</a>
+            &copy; 2022 - Movie App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Brendom Gonçalves | Lucas Silva</a>
         </div>
     </footer>
-    <script>
-        // Verifica se existe uma mensagem de sucesso
-        var successMessage = '@TempData["SuccessMessage"]';
-        if (successMessage) {
-            // Exibe a mensagem de sucesso
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso',
-                text: successMessage
-            });
-        }
-    </script>
-
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
