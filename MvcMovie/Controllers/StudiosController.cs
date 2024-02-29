@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
@@ -18,7 +19,9 @@ namespace MvcMovie.Controllers
         // GET: Studios
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Studio.ToListAsync());
+            var mvcStudioContext = _context.Studio
+                .Include(m => m.Movies);
+            return View(await mvcStudioContext.ToListAsync());
         }
 
         // GET: Studios/Details/5
@@ -61,22 +64,27 @@ namespace MvcMovie.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(studio);
         }
 
         // GET: Studios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Studio == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            var studio = await _context.Studio.FindAsync(id);
-            if (studio == null)
+            var studio = await _context.Studio
+                .Include(m => m.Movies)
+                .FirstOrDefaultAsync(m => m.StudioId == id);
+
+            if (studio == null) return NotFound();
+
+            ViewBag.Movies = _context.Movie.Select(m => new SelectListItem
             {
-                return NotFound();
-            }
+                Value = m.MovieId.ToString(),
+                Text = m.Title
+            }).ToList();
+
             return View(studio);
         }
 
@@ -86,15 +94,15 @@ namespace MvcMovie.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = "Administrator")]
-        public async Task<IActionResult> Edit(int id, [Bind("StudioId,Name,Country,Site")] Studio studio)
+        public async Task<IActionResult> Edit(int id, [Bind("StudioId,Name,Country,Site")] Studio studio,
+            List<int> movies)
         {
-            if (id != studio.StudioId)
-            {
-                return NotFound();
-            }
+            if (id != studio.StudioId) return NotFound();
 
             if (ModelState.IsValid)
             {
+                var _movies = _context.Movie.Where(a => movies.Contains(a.MovieId)).ToList();
+                if (_movies.Count > 0) studio.Movies = _movies;
                 try
                 {
                     _context.Update(studio);
@@ -102,17 +110,19 @@ namespace MvcMovie.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudioExists(studio.StudioId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!StudioExists(studio.StudioId)) return NotFound();
+                    throw;
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Movies = _context.Movie.Select(m => new SelectListItem
+            {
+                Value = m.MovieId.ToString(),
+                Text = m.Title
+            }).ToList();
+
             return View(studio);
         }
 
@@ -120,17 +130,11 @@ namespace MvcMovie.Controllers
         [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Studio == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var studio = await _context.Studio
                 .FirstOrDefaultAsync(m => m.StudioId == id);
-            if (studio == null)
-            {
-                return NotFound();
-            }
+            if (studio == null) return NotFound();
 
             return View(studio);
         }
@@ -141,23 +145,16 @@ namespace MvcMovie.Controllers
         [Authorize(Policy = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Studio == null)
-            {
-                return Problem("Entity set 'MvcMovieContext.Studio'  is null.");
-            }
             var studio = await _context.Studio.FindAsync(id);
-            if (studio != null)
-            {
-                _context.Studio.Remove(studio);
-            }
-            
+            if (studio != null) _context.Studio.Remove(studio);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudioExists(int id)
         {
-          return (_context.Studio?.Any(e => e.StudioId == id)).GetValueOrDefault();
+            return (_context.Studio?.Any(e => e.StudioId == id)).GetValueOrDefault();
         }
     }
 }

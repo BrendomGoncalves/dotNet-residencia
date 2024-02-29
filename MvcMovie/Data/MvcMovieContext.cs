@@ -31,6 +31,11 @@ namespace MvcMovie.Data
                 .HasOne(m => m.Studio)
                 .WithMany(s => s.Movies)
                 .HasForeignKey(m => m.StudioId);
+
+            modelBuilder.Entity<Studio>()
+                .HasMany(s => s.Movies)
+                .WithOne(m => m.Studio)
+                .HasForeignKey(m => m.StudioId);
         }
     }
 }
