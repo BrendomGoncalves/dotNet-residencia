@@ -2,7 +2,7 @@ namespace ExercicioUm.Classes;
 
 public class Lampada
 {
-    public bool Ligada { get;set; } = false;
+    private bool Ligada { get;set; } = false;
 
     public Lampada(bool _ligarLampada)
     {
