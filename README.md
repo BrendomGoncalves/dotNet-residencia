@@ -1,23 +1,27 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg" alt="Project logo"></a>
-</p>
+# Cepedi.CleanArch
 
-<h1 align="center">dotNet-residencia</h1>
+Executar o projeto `src\Cepedi.WebApi` para abrir o swagger
 
-<div align="center">
+## Caracter�sticas do projeto
 
-![Static Badge](https://img.shields.io/badge/Language-C%23-blue)
-![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/BrendomGoncalves/dotNet-residencia)
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/BrendomGoncalves/dotNet-residencia)
+- .NET 8.0
+- ORM Entity Framework
+- Framework de testes: xUnit
+- Framework de assertions: FluentAssertions
+- Framework de Mock: NSubstitute
+- Framework de fake data generator: Bogus
+- Code Analyzer: NetAnalyzers, SonarAnalyzer.Csharp
+- Banco de dados: Sqlite
+- Projeto de testes de unidade
+- Controllers e Actinos atendendo o padr�o RestFull
+- Tratamento de Warning como Error
+- Healthcheck
+    - Liveness
+    - Readyness
+- Log com Serilog
 
+## Setup
 
-</div>
+* Quais ferramentas necess�rias
+ Visual Studio, .NET Core SDK 8+, etc
 
-## 🧐 About <a name = "about"></a>
-
-Respositório para Residência de Software com atividades do módulo de <b>DotNet</b> com <b><a href="https://github.com/hcalmeida-uesc">Professor Hélder Almeida</a>.
-
-## ✍️ Autores
-
-- [Brendom Gonçalves](https://github.com/BrendomGoncalves)
