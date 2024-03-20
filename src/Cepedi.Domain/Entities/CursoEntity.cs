@@ -2,9 +2,7 @@
 
 public class CursoEntity
 {
-    public CursoEntity()
-    {        
-    }
+    public CursoEntity(){}
 
     public CursoEntity(int id, string nome, string descricao, DateTime inicio, DateTime fim, ProfessorEntity professor)
     {
@@ -26,7 +24,7 @@ public class CursoEntity
     
     public DateTime DataFim { get; set; }
 
-    public ProfessorEntity Professor { get; set; }
+    public ProfessorEntity? Professor { get; set; }
 
     public int ProfessorId { get; set; } 
 
