@@ -1,5 +1,3 @@
 ﻿namespace Cepedi.Shareable;
 
-public interface IShareableEntryPoint
-{
-}
+public interface IShareableEntryPoint{}
